@@ -1,19 +1,28 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
-name: Go
+name: Docker Build and Tag
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # Replace with the branch name you want to trigger the workflow on
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - run: pwd
-    - run: ls -lhrt
-    - run: docker build . -t crud:latest
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Display current directory
+        run: |
+          pwd
+
+      - name: List directory contents
+        run: |
+          ls -lhrt
+
+      - name: Build and tag Docker image
+        run: |
+          docker build -t crudapp .
+
+      # You can add more steps here, such as pushing the Docker image to a registry, deploying the application, etc.
