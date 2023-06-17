@@ -15,4 +15,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: pwd
-    - run: docker build ../. -t crud:latest
+    - run: ls -lhrt
+    - run: docker build . -t crud:latest
